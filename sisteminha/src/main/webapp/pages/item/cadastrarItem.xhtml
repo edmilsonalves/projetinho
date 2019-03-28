@@ -27,7 +27,7 @@
 	 		 			<br/>
 	            		<p:inputText id="descricao" 
 	            				  style="width:500px" maxlength="255" 
-	            				  value="#{itemController.item.descricao}"
+	            				  value="#{itemMBean.item.descricao}"
 	            				  required="true"
 	            				  requiredMessage="A descrição é obrigatória!" />
 	            		<p:spacer/>
@@ -36,7 +36,7 @@
 	 		 			<br/>
 	            		<p:inputNumber id="valor" 
 	            				  style="width:200px" 
-	            				  value="#{itemController.item.valor}"
+	            				  value="#{itemMBean.item.valor}"
 	            				  required="true"
 	            				  requiredMessage="O valor é obrigatório!"
 	            				  decimalPlaces="2"
@@ -46,7 +46,7 @@
 	            		<p:commandButton value="Salvar" 
 	            				 id="commandButton-salvar"
 						 icon="ui-icon-gear"
-						 actionListener="#{itemController.save}"
+						 actionListener="#{itemMBean.save}"
 						 update="panelGrid-campos-form"/>
  
  

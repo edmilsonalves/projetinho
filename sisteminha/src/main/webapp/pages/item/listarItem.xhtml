@@ -36,7 +36,7 @@
  
 			<p:dataTable id="dataTable-registros"
 						 var="item" 
-						 value="#{itemController.getLista()}" 
+						 value="#{itemMBean.getLista()}" 
 						 rows="15"
 						 paginator="true"
 						 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {JumpToPageDropdown} {NextPageLink} {LastPageLink}"
@@ -63,7 +63,7 @@
     				    				    title="Editar Registro"                        					 
                     					    ajax="true" 
                     					    oncomplete="PF('dialog-modal-editar').show();" 
-                    					    actionListener="#{itemController.carregarItem(item)}"
+                    					    actionListener="#{itemMBean.carregarItem(item)}"
                     					    update="dialog-modal-editar"/>
         				 </p:column>
  
@@ -72,7 +72,7 @@
 	        				 <p:commandButton icon="ui-icon-trash" 
 	        				    		     title="Excluir Registro"                        					 
 	                        					 ajax="true"
-	                        					 actionListener="#{itemController.delete(item)}"
+	                        					 actionListener="#{itemMBean.delete(item)}"
 	                        					 update="@form" />
  
         				 </p:column>

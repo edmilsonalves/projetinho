@@ -6,7 +6,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
-import com.sisteminha.model.ItemModel;
+import com.sisteminha.dto.ItemDTO;
 import com.sisteminha.repository.ItemRepository;
 import com.sisteminha.repository.entity.ItemEntity;
 
@@ -16,7 +16,7 @@ public class ItemConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent uiComponent, String value) {
         if(value != null || !value.isEmpty()){ 
-        	return (ItemModel) uiComponent.getAttributes().get(value);
+        	return (ItemDTO) uiComponent.getAttributes().get(value);
         }
         
         return null;
@@ -24,10 +24,10 @@ public class ItemConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent uiComponent, Object value) { 
-        if (value instanceof ItemModel) {
-        	ItemModel entity= (ItemModel) value;
+        if (value instanceof ItemDTO) {
+        	ItemDTO entity= (ItemDTO) value;
         	
-            if (entity != null && entity instanceof ItemModel && entity.getCodigo() != null) {
+            if (entity != null && entity instanceof ItemDTO && entity.getCodigo() != null) {
                 uiComponent.getAttributes().put( entity.getCodigo().toString(), entity);
                 return entity.getCodigo().toString();
             }

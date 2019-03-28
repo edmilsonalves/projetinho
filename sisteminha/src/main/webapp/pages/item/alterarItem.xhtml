@@ -11,7 +11,7 @@
        		<p:outputLabel value="Código" for="codigo"/>
 			<br/>
 			<p:inputText   id="codigo"
-			 		value="#{itemController.item.codigo}"
+			 		value="#{itemMBean.item.codigo}"
 			 		style="width:50px"
 			 		readonly="#{facesContext.renderResponse}"/>
        		<p:spacer/>
@@ -20,7 +20,7 @@
 			<br/>
        		<p:inputText id="descricao" 
        				  style="width:500px" maxlength="255" 
-       				  value="#{itemController.item.descricao}"
+       				  value="#{itemMBean.item.descricao}"
        				  required="true"
        				  requiredMessage="A descrição é obrigatória!" />
        		<p:spacer/>
@@ -29,7 +29,7 @@
 			<br/>
        		<p:inputNumber id="valor" 
        				  style="width:200px" 
-       				  value="#{itemController.item.valor}"
+       				  value="#{itemMBean.item.valor}"
        				  required="true"
        				  requiredMessage="O valor é obrigatório!"
        				  decimalPlaces="2"
@@ -39,7 +39,7 @@
 			<p:commandButton value="Alterar" 
 			            	 id="commandButton-alterar"
 					         icon="ui-icon-gear"
-			   		         action="#{itemController.update}"							 
+			   		         action="#{itemMBean.update}"							 
 					         oncomplete="if (!args.validationFailed) PF('dialog-modal-editar').hide();"
 				             update="form-consulta"/> 
 		 

@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.sisteminha.model.ItemModel;
+import com.sisteminha.dto.ItemDTO;
 import com.sisteminha.repository.ItemRepository;
 import com.sisteminha.repository.entity.ItemEntity;
 
@@ -18,7 +18,7 @@ public class ItemService implements Serializable{
 	 * Salvar um item no BD
 	 * @param itemModel
 	 */
-	public boolean save(ItemModel item) {		
+	public boolean save(ItemDTO item) {		
 		return this.itemRepository.save(item);
 	}
 	
@@ -34,7 +34,7 @@ public class ItemService implements Serializable{
 	/**
 	 * Alterar o registro
 	 */
-	public boolean update(ItemModel item) {
+	public boolean update(ItemDTO item) {
 		return this.itemRepository.update(item);	
 	}
 	
@@ -50,7 +50,7 @@ public class ItemService implements Serializable{
 	 * Mostrar todos
 	 * @return
 	 */
-	public List<ItemModel> findAll(){
+	public List<ItemDTO> findAll(){
 		return this.itemRepository.findAll();		
 	}
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import com.sisteminha.model.ItemModel;
+import com.sisteminha.dto.ItemDTO;
 import com.sisteminha.repository.entity.ItemEntity;
 import com.sisteminha.util.EntityManagerProd;
 
@@ -21,7 +21,7 @@ public class ItemRepository implements Serializable{
 	 * Salvar um item no BD
 	 * @param itemModel
 	 */
-	public boolean save(ItemModel item) {
+	public boolean save(ItemDTO item) {
 		entityManager = EntityManagerProd.JpaEntityManager();
 		
 		itemEntity = new ItemEntity(item);
@@ -48,7 +48,7 @@ public class ItemRepository implements Serializable{
 	/**
 	 * Alterar o registro
 	 */
-	public boolean update(ItemModel item) {
+	public boolean update(ItemDTO item) {
 		entityManager = EntityManagerProd.JpaEntityManager();
 		
 		ItemEntity itemE = this.getItem(new Long(item.getCodigo()));	
@@ -83,15 +83,15 @@ public class ItemRepository implements Serializable{
 	 * Mostrar todos
 	 * @return
 	 */
-	public List<ItemModel> findAll(){
-		List<ItemModel> lista = new ArrayList<ItemModel>();
+	public List<ItemDTO> findAll(){
+		List<ItemDTO> lista = new ArrayList<ItemDTO>();
 		
 		entityManager = EntityManagerProd.JpaEntityManager();
 				
 		List<ItemEntity> list = entityManager.createQuery("SELECT item FROM ItemEntity item", ItemEntity.class).getResultList();
 		
 		for  (ItemEntity itemE: list) {
-			ItemModel itemM = new ItemModel(itemE);
+			ItemDTO itemM = new ItemDTO(itemE);
 			lista.add(itemM);
 		}
 		

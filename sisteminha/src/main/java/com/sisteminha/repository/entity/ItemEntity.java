@@ -1,18 +1,15 @@
 package com.sisteminha.repository.entity;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.sisteminha.model.ItemModel;
+import com.sisteminha.dto.ItemDTO;
 
 @Entity
 @Table(name = "item")
@@ -29,15 +26,12 @@ public class ItemEntity {
 	@Column(name = "valor", precision = 8, scale = 2)
 	private BigDecimal valor;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
-	private List<LancamentoItemEntity> itensLcto;
-
 	// Construtor default
 	public ItemEntity() {
 	}
 
 	// Construtor personalizado
-	public ItemEntity(ItemModel im) {
+	public ItemEntity(ItemDTO im) {
 		if (im.getCodigo() != null)
 			this.id = new Long(im.getCodigo());
 		this.descricao = im.getDescricao();
@@ -66,14 +60,6 @@ public class ItemEntity {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
-	}
-
-	public List<LancamentoItemEntity> getItensLcto() {
-		return itensLcto;
-	}
-
-	public void setItensLcto(List<LancamentoItemEntity> itensLcto) {
-		this.itensLcto = itensLcto;
 	}
 
 }
