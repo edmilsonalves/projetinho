@@ -1,18 +1,17 @@
-package com.sisteminha.service;
+package com.sisteminha.repository;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import com.sisteminha.model.ItemModel;
 import com.sisteminha.repository.entity.ItemEntity;
 import com.sisteminha.util.EntityManagerProd;
 
 public class ItemRepository implements Serializable{	
+	
 	@Inject
 	private ItemEntity itemEntity;
 		
@@ -84,14 +83,14 @@ public class ItemRepository implements Serializable{
 	 * Mostrar todos
 	 * @return
 	 */
-	public List<ItemModel> getAll(){
+	public List<ItemModel> findAll(){
 		List<ItemModel> lista = new ArrayList<ItemModel>();
 		
 		entityManager = EntityManagerProd.JpaEntityManager();
+				
+		List<ItemEntity> list = entityManager.createQuery("SELECT item FROM ItemEntity item", ItemEntity.class).getResultList();
 		
-		Query query = entityManager.createNamedQuery("ItemEntity.findAll");
-		
-		for  (ItemEntity itemE: (List<ItemEntity>)query.getResultList() ) {
+		for  (ItemEntity itemE: list) {
 			ItemModel itemM = new ItemModel(itemE);
 			lista.add(itemM);
 		}

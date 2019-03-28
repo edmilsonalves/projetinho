@@ -1,4 +1,4 @@
-package com.sisteminha.service;
+package com.sisteminha.repository;
 
 import java.io.Serializable;
 import java.util.ArrayList;

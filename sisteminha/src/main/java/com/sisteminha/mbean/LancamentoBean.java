@@ -8,22 +8,18 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.hibernate.Hibernate;
-import org.primefaces.context.RequestContext;
-
 import com.sisteminha.model.ItemModel;
 import com.sisteminha.model.LancamentoModel;
+import com.sisteminha.repository.LancamentoItemRepository;
+import com.sisteminha.repository.LancamentoRepository;
 import com.sisteminha.repository.entity.ItemEntity;
 import com.sisteminha.repository.entity.LancamentoEntity;
 import com.sisteminha.repository.entity.LancamentoItemEntity;
-import com.sisteminha.service.ItemRepository;
-import com.sisteminha.service.LancamentoItemRepository;
-import com.sisteminha.service.LancamentoRepository;
+import com.sisteminha.service.ItemService;
 import com.sisteminha.util.Mensagem;
 
 @Named
@@ -38,7 +34,7 @@ public class LancamentoBean implements Serializable {
 	private ItemModel itemSelecionado;
 		
 	@Inject
-	private ItemRepository itemRepository;
+	private ItemService itemService;
 	
 	@Inject
 	private LancamentoRepository lctoRepository;
@@ -226,7 +222,7 @@ public class LancamentoBean implements Serializable {
 	//Obtem os itens para preenchimento
 	@PostConstruct
 	public void init(){
-		itensCadastro = itemRepository.getAll();
+		itensCadastro = itemService.findAll();
 		itemSelecionado = new ItemModel();
 		itensLancamento = new ArrayList<ItemModel>();
 		itensSalvo = new ArrayList<LancamentoItemEntity>();

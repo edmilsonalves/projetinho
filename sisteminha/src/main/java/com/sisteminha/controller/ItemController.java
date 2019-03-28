@@ -11,14 +11,15 @@ import org.hibernate.Hibernate;
 
 import com.sisteminha.model.ItemModel;
 import com.sisteminha.repository.entity.ItemEntity;
-import com.sisteminha.service.ItemRepository;
+import com.sisteminha.service.ItemService;
 import com.sisteminha.util.Mensagem;
 
 @Named(value="itemController")
 @RequestScoped
 public class ItemController {	
+	
 	@Inject
-	private ItemRepository itemRepository;
+	private ItemService itemService;
 	
 	@Inject
 	private ItemModel item;
@@ -40,7 +41,7 @@ public class ItemController {
 	
 	//Salvar
 	public void save() {
-		boolean salvou = itemRepository.save(this.item);
+		boolean salvou = itemService.save(this.item);
 		
 		if(salvou) {
 			this.item = null;
@@ -57,7 +58,7 @@ public class ItemController {
 	
 	//Editar
 	public void update() {		
-		boolean atualizou = itemRepository.update(this.item);
+		boolean atualizou = itemService.update(this.item);
 		
 		//Atualizar lista
 		if (atualizou) {
@@ -70,7 +71,7 @@ public class ItemController {
 	//Deletar	
 	public void delete(ItemModel item) {
 		//Buscar o item
-		ItemEntity i = itemRepository.getItem(new Long(item.getCodigo()));
+		ItemEntity i = itemService.getItem(new Long(item.getCodigo()));
 		Hibernate.initialize(i.getItensLcto());
 		
 		//Ver se ele está em algum lançamento
@@ -83,7 +84,7 @@ public class ItemController {
 			return;
 		}
 		
-		boolean removeu = itemRepository.delete(item.getCodigo().intValue());
+		boolean removeu = itemService.delete(item.getCodigo().intValue());
 		
 		if (!removeu) {
 			Mensagem.exibirDialogErro("Ocorreu um erro ao remover o item!");
@@ -100,6 +101,6 @@ public class ItemController {
 	//Carrega a lista de itens
 	@PostConstruct
 	public void init(){
-		this.lista = itemRepository.getAll();
+		this.lista = itemService.findAll();
 	}
 }

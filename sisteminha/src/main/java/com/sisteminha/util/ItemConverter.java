@@ -7,8 +7,8 @@ import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
 import com.sisteminha.model.ItemModel;
+import com.sisteminha.repository.ItemRepository;
 import com.sisteminha.repository.entity.ItemEntity;
-import com.sisteminha.service.ItemRepository;
 
 @FacesConverter(value = "itemConverter")
 public class ItemConverter implements Converter {
