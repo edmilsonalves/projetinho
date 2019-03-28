@@ -1,4 +1,4 @@
-package com.bilecki.repository.entity;
+package com.sisteminha.repository.entity;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,7 +14,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.bilecki.model.ItemModel;
+import com.sisteminha.model.ItemModel;
 
 @Entity
 @Table(name="item")

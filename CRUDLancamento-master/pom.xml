@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>br.com.luisbilecki</groupId>
-  <artifactId>CRUDLancamento</artifactId>
+  <artifactId>sisteminha</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>CRUDLancamento Maven Webapp</name>
+  <name>sisteminha Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
   <properties>  	
@@ -54,7 +54,7 @@
   </properties>
   
   <build>
-    <finalName>CRUDLancamento</finalName>
+    <finalName>sisteminha</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

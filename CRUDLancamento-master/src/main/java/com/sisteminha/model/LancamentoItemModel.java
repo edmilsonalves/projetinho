@@ -1,6 +1,6 @@
-package com.bilecki.model;
+package com.sisteminha.model;
 
-import com.bilecki.repository.entity.LancamentoItemEntity;
+import com.sisteminha.repository.entity.LancamentoItemEntity;
 
 public class LancamentoItemModel { 
 	  private Long codigo; 	

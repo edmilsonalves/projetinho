@@ -1,4 +1,4 @@
-package com.bilecki.util;
+package com.sisteminha.util;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;

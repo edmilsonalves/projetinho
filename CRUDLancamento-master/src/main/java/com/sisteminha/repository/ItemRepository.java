@@ -1,4 +1,4 @@
-package com.bilecki.repository;
+package com.sisteminha.repository;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -8,9 +8,9 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import com.bilecki.model.ItemModel;
-import com.bilecki.repository.entity.ItemEntity;
-import com.bilecki.util.EntityManagerProd;
+import com.sisteminha.model.ItemModel;
+import com.sisteminha.repository.entity.ItemEntity;
+import com.sisteminha.util.EntityManagerProd;
 
 public class ItemRepository implements Serializable{	
 	@Inject

@@ -1,4 +1,4 @@
-package com.bilecki.controller;
+package com.sisteminha.controller;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ import javax.inject.Named;
 import org.hibernate.Hibernate;
 import org.primefaces.context.RequestContext;
 
-import com.bilecki.model.ItemModel;
-import com.bilecki.repository.ItemRepository;
-import com.bilecki.repository.entity.ItemEntity;
-import com.bilecki.util.Mensagem;
+import com.sisteminha.model.ItemModel;
+import com.sisteminha.repository.ItemRepository;
+import com.sisteminha.repository.entity.ItemEntity;
+import com.sisteminha.util.Mensagem;
 
 @Named(value="itemController")
 @RequestScoped

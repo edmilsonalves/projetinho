@@ -1,4 +1,4 @@
-package com.bilecki.model;
+package com.sisteminha.model;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -8,7 +8,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.Locale;
 
-import com.bilecki.repository.entity.LancamentoEntity;
+import com.sisteminha.repository.entity.LancamentoEntity;
 
 public class LancamentoModel { 
   private Long oid; 

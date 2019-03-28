@@ -1,4 +1,4 @@
-package com.bilecki.model;
+package com.sisteminha.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,8 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.bilecki.repository.entity.ItemEntity;
-import com.bilecki.repository.entity.LancamentoItemEntity;
+import com.sisteminha.repository.entity.ItemEntity;
+import com.sisteminha.repository.entity.LancamentoItemEntity;
 
 public class ItemModel implements Serializable {
 

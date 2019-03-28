@@ -1,4 +1,4 @@
-package com.bilecki.repository.entity;
+package com.sisteminha.repository.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +12,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import com.bilecki.model.LancamentoItemModel;
+import com.sisteminha.model.LancamentoItemModel;
 
 @Table(name="lancamentoItem") 
 @Entity 

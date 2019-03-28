@@ -1,4 +1,4 @@
-package com.bilecki.repository.entity;
+package com.sisteminha.repository.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import com.bilecki.model.LancamentoModel;
+import com.sisteminha.model.LancamentoModel;
 
 @Table(name="lancamento") 
 @NamedQueries({

@@ -1,4 +1,4 @@
-package com.bilecki.beans;
+package com.sisteminha.mbean;
 
 import javax.faces.bean.ManagedBean;
 

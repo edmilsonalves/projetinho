@@ -1,4 +1,4 @@
-package com.bilecki.beans;
+package com.sisteminha.mbean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -16,15 +16,15 @@ import javax.inject.Named;
 import org.hibernate.Hibernate;
 import org.primefaces.context.RequestContext;
 
-import com.bilecki.model.ItemModel;
-import com.bilecki.model.LancamentoModel;
-import com.bilecki.repository.ItemRepository;
-import com.bilecki.repository.LancamentoItemRepository;
-import com.bilecki.repository.LancamentoRepository;
-import com.bilecki.repository.entity.ItemEntity;
-import com.bilecki.repository.entity.LancamentoEntity;
-import com.bilecki.repository.entity.LancamentoItemEntity;
-import com.bilecki.util.Mensagem;
+import com.sisteminha.model.ItemModel;
+import com.sisteminha.model.LancamentoModel;
+import com.sisteminha.repository.ItemRepository;
+import com.sisteminha.repository.LancamentoItemRepository;
+import com.sisteminha.repository.LancamentoRepository;
+import com.sisteminha.repository.entity.ItemEntity;
+import com.sisteminha.repository.entity.LancamentoEntity;
+import com.sisteminha.repository.entity.LancamentoItemEntity;
+import com.sisteminha.util.Mensagem;
 
 @Named
 @ViewScoped
