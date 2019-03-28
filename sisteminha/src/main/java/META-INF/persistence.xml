@@ -8,7 +8,7 @@
  
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_prova" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_sisteminha" />
             <property name="javax.persistence.jdbc.user" value="univision" />
             <property name="javax.persistence.jdbc.password" value="univision" />
  
