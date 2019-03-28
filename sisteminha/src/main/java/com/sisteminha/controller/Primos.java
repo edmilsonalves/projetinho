@@ -1,8 +1,6 @@
 package com.sisteminha.controller;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.inject.Named;
 
 @ManagedBean
 public class Primos {

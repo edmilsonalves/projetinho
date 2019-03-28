@@ -4,16 +4,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.hibernate.Hibernate;
-import org.primefaces.context.RequestContext;
 
 import com.sisteminha.model.ItemModel;
-import com.sisteminha.repository.ItemRepository;
 import com.sisteminha.repository.entity.ItemEntity;
+import com.sisteminha.service.ItemRepository;
 import com.sisteminha.util.Mensagem;
 
 @Named(value="itemController")

@@ -21,7 +21,7 @@ public class LancamentoModel {
   
   //Construtor personalizado
   public LancamentoModel(LancamentoEntity e) {
-	  this.oid = e.getOid();
+	  this.oid = e.getId();
 	  this.dataInicial = e.getDataInicial();
 	  this.dataFinal = e.getDataFinal();
 	  this.observacao = e.getObservacao();
@@ -31,11 +31,11 @@ public class LancamentoModel {
   //Construtor default
   public LancamentoModel() {}
   
-  public Long getOid() { 
+  public Long getId() { 
     return oid; 
   } 
  
-  public void setOid(Long oid) { 
+  public void setId(Long oid) { 
     this.oid = oid; 
   } 
  

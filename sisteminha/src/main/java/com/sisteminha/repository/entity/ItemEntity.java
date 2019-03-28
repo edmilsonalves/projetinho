@@ -17,44 +17,43 @@ import javax.persistence.Table;
 import com.sisteminha.model.ItemModel;
 
 @Entity
-@Table(name="item")
-@NamedQueries({
-	@NamedQuery(name="ItemEntity.findAll", query = "SELECT i FROM ItemEntity i")
-})
+@Table(name = "item")
+@NamedQueries({ @NamedQuery(name = "ItemEntity.findAll", query = "SELECT i FROM ItemEntity i") })
 
 public class ItemEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "oid")
-	private Long oid;
-	
+	@Column(name = "id")
+	private Long id;
+
 	@Column(name = "descricao", length = 255)
 	private String descricao;
 
 	@Column(name = "valor", precision = 8, scale = 2)
 	private BigDecimal valor;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	private List<LancamentoItemEntity> itensLcto;
-	
-	//Construtor default
-	public ItemEntity() {}
-	
-	//Construtor personalizado
+
+	// Construtor default
+	public ItemEntity() {
+	}
+
+	// Construtor personalizado
 	public ItemEntity(ItemModel im) {
 		if (im.getCodigo() != null)
-			this.oid = new Long(im.getCodigo());
+			this.id = new Long(im.getCodigo());
 		this.descricao = im.getDescricao();
 		this.valor = im.getValor();
 	}
-	
-	public Long getOid() {
-		return oid;
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setOid(Long oid) {
-		this.oid = oid;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getDescricao() {
@@ -80,5 +79,5 @@ public class ItemEntity {
 	public void setItensLcto(List<LancamentoItemEntity> itensLcto) {
 		this.itensLcto = itensLcto;
 	}
-	
+
 }

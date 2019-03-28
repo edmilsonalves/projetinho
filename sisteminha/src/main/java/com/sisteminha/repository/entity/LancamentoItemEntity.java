@@ -14,66 +14,58 @@ import javax.persistence.Table;
 
 import com.sisteminha.model.LancamentoItemModel;
 
-@Table(name="lancamentoItem") 
-@Entity 
+@Table(name = "lancamentoItem")
+@Entity
 @NamedQueries({
-	@NamedQuery(name="LancamentoItemEntity.findByLanc", 
-			    query = "SELECT l FROM LancamentoItemEntity l WHERE l.lancamento = :lancamento")
-})
+		@NamedQuery(name = "LancamentoItemEntity.findByLanc", query = "SELECT l FROM LancamentoItemEntity l WHERE l.lancamento = :lancamento") })
 public class LancamentoItemEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "oid")
-	private Long oid; 
+	@Column(name = "id")
+	private Long id;
 
-	@ManyToOne(fetch = FetchType.EAGER) 
-	@JoinColumn(name = "oid_lancamento") 
-	private LancamentoEntity lancamento; 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_lancamento")
+	private LancamentoEntity lancamento;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_item")
+	private ItemEntity item;
 
-	@ManyToOne(fetch = FetchType.EAGER) 
-	@JoinColumn(name = "oid_item") 
-	private ItemEntity item; 
+	// Construtor padrão
+	public LancamentoItemEntity() {
+	}
 
-	//Construtor padrão
-	public LancamentoItemEntity() {}
-	
-	//Construtor personalizado
+	// Construtor personalizado
 	public LancamentoItemEntity(LancamentoItemModel lm) {
-		this.oid = lm.getCodigo();
+		this.id = lm.getCodigo();
 		this.item = new ItemEntity(lm.getItem());
 		this.lancamento = new LancamentoEntity(lm.getLancamento());
 	}
-	
-	public LancamentoEntity getLancamento() { 
-		return lancamento; 
-	} 
 
-
-	public void setLancamento(LancamentoEntity lancamento) { 
-		this.lancamento = lancamento; 
-	} 
-
-
-	public ItemEntity getItem() { 
-		return item; 
-	} 
-
-
-	public void setItem(ItemEntity item) { 
-		this.item = item; 
+	public Long getId() {
+		return id;
 	}
 
-
-	public Long getOid() {
-		return oid;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
+	public LancamentoEntity getLancamento() {
+		return lancamento;
+	}
 
-	public void setOid(Long oid) {
-		this.oid = oid;
-	} 
+	public void setLancamento(LancamentoEntity lancamento) {
+		this.lancamento = lancamento;
+	}
 
-	
+	public ItemEntity getItem() {
+		return item;
+	}
+
+	public void setItem(ItemEntity item) {
+		this.item = item;
+	}
+
 }

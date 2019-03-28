@@ -18,12 +18,12 @@ import org.primefaces.context.RequestContext;
 
 import com.sisteminha.model.ItemModel;
 import com.sisteminha.model.LancamentoModel;
-import com.sisteminha.repository.ItemRepository;
-import com.sisteminha.repository.LancamentoItemRepository;
-import com.sisteminha.repository.LancamentoRepository;
 import com.sisteminha.repository.entity.ItemEntity;
 import com.sisteminha.repository.entity.LancamentoEntity;
 import com.sisteminha.repository.entity.LancamentoItemEntity;
+import com.sisteminha.service.ItemRepository;
+import com.sisteminha.service.LancamentoItemRepository;
+import com.sisteminha.service.LancamentoRepository;
 import com.sisteminha.util.Mensagem;
 
 @Named
@@ -161,11 +161,11 @@ public class LancamentoBean implements Serializable {
 	
 	//Remove quando já existe
 	public void removeItemQdoLctoExiste(LancamentoItemEntity item) {
-		if(item.getOid() == null) {
-			itensLancamento.removeIf(p -> p.getCodigo() == item.getItem().getOid().intValue());
+		if(item.getId() == null) {
+			itensLancamento.removeIf(p -> p.getCodigo() == item.getItem().getId().intValue());
 		}else {	
 			//Remover do banco
-			if (!lcitRepository.delete(item.getOid())) {
+			if (!lcitRepository.delete(item.getId())) {
 				Mensagem.mostrarMensagemErro("Ocorreu um erro ao remover esse item");
 				return;
 			}
@@ -207,7 +207,7 @@ public class LancamentoBean implements Serializable {
 
 		//Salvar os itens novos no banco
 		if(itensLancamento.size() > 0) {
-			LancamentoEntity lctoSalvo = lctoRepository.getLcto(lancamento.getOid());
+			LancamentoEntity lctoSalvo = lctoRepository.getLcto(lancamento.getId());
 			
 			boolean salvouItens = lcitRepository.save(itensLancamento, lctoSalvo);
 			if (!salvouItens) {

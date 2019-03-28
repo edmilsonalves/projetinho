@@ -12,7 +12,7 @@ public class LancamentoItemModel {
 	  
 	  //Construtor default
 	  public LancamentoItemModel(LancamentoItemEntity lancitem) {
-		  this.codigo = lancitem.getOid();
+		  this.codigo = lancitem.getId();
 		  this.lancamento = new LancamentoModel(lancitem.getLancamento());
 		  this.item = new ItemModel(lancitem.getItem());
 	  }

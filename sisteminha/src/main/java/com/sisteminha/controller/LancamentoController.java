@@ -2,27 +2,19 @@ package com.sisteminha.controller;
  
 import java.util.ArrayList;
 import java.util.List;
- 
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
- 
-import org.primefaces.component.selectonemenu.SelectOneMenu;
-import org.primefaces.context.RequestContext;
 
-import com.sisteminha.model.ItemModel;
 import com.sisteminha.model.LancamentoItemModel;
 import com.sisteminha.model.LancamentoModel;
-import com.sisteminha.repository.ItemRepository;
-import com.sisteminha.repository.LancamentoItemRepository;
-import com.sisteminha.repository.LancamentoRepository;
 import com.sisteminha.repository.entity.LancamentoEntity;
 import com.sisteminha.repository.entity.LancamentoItemEntity;
+import com.sisteminha.service.ItemRepository;
+import com.sisteminha.service.LancamentoItemRepository;
+import com.sisteminha.service.LancamentoRepository;
 import com.sisteminha.util.Mensagem;
  
 @Named(value="lancamentoController")
@@ -84,7 +76,7 @@ public class LancamentoController {
 		}
 		
 		//Remover o lançamento
-		if (!lancamentoRepository.delete(lancamento.getOid().intValue())) {
+		if (!lancamentoRepository.delete(lancamento.getId().intValue())) {
 			Mensagem.exibirDialogErro("Ocorreu um erro ao remover o lançamento!");
 			return;
 		}

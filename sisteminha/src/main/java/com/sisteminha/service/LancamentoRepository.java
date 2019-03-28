@@ -1,4 +1,4 @@
-package com.sisteminha.repository;
+package com.sisteminha.service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -89,7 +89,7 @@ public class LancamentoRepository  implements Serializable{
 	public boolean update(LancamentoModel lcto) {
 		entityManager = EntityManagerProd.JpaEntityManager();
 		
-		LancamentoEntity lctoE = this.getLcto(lcto.getOid());	
+		LancamentoEntity lctoE = this.getLcto(lcto.getId());	
 		
 		lctoE.setDataFinal(lcto.getDataFinal());
 		lctoE.setDataInicial(lcto.getDataInicial());

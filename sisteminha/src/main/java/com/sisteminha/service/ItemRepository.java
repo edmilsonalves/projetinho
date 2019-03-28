@@ -1,4 +1,4 @@
-package com.sisteminha.repository;
+package com.sisteminha.service;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
