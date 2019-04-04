@@ -51,6 +51,8 @@ public class ProdutoMBean implements Serializable {
 	public void init() {
 		filtro = new ProdutoFilter();
 		limpar();
+		
+		produtosFiltrados = produtoService.findByFilter(filtro);
 	}
 
 	public void inicializar() {

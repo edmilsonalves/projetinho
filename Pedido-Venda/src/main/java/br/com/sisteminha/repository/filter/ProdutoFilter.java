@@ -12,7 +12,6 @@ public class ProdutoFilter implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @SKU
     private String sku;
 
     private String nome;

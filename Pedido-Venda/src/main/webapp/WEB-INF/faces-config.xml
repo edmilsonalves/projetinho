@@ -5,8 +5,13 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     
     <application>        
-        <message-bundle>br.com.sisteminha.Messages</message-bundle>
+        <message-bundle>com.absoft.pedidovenda.Messages</message-bundle>
+        
+        <locale-config>
+            <default-locale>pt_BR</default-locale>
+   	 	</locale-config>
     </application>   
+    
 
 
     <factory>

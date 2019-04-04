@@ -32,7 +32,7 @@ public class ProdutoRepository implements Serializable {
     @Inject
     private EntityManager entityManager;
 
-    public Produto guardar(Produto produto) {
+    public Produto salvar(Produto produto) {
         return entityManager.merge(produto);
     }
 
@@ -58,21 +58,25 @@ public class ProdutoRepository implements Serializable {
         }
     }
 
-    public List<Produto> findByFilter(ProdutoFilter filtro) {
-        Session session = entityManager.unwrap(Session.class);
-        Criteria criteria = session.createCriteria(Produto.class); //Criar um criterio
+    @SuppressWarnings("unchecked")
+	public List<Produto> findByFilter(ProdutoFilter filtro) {
+    	
+    	StringBuilder sb = new StringBuilder();
+    	
+    	sb.append("SELECT produto FROM Produto produto ");
+    	sb.append("WHERE 1=1 ");
 
-        if (!filtro.getSku().equals("")) {
-            criteria.add(Restrictions.eq("sku", filtro.getSku()));
+        if ( !"".equals(filtro.getSku()) && filtro.getSku() != null) {
+            sb.append("AND produto.sku like '%" + filtro.getSku()+"%' ");
         }
 
-        if (!filtro.getNome().equals("")) {
-            criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE)); //ANYWHERE = %joao%
+        if (!"".equals(filtro.getNome()) && filtro.getNome() != null) {
+        	 sb.append("AND produto.nome like '%"+filtro.getNome().toUpperCase()+"%' ");
         }
+        
+        sb.append("ORDER BY produto.nome");
 
-        criteria.addOrder(Order.asc("nome")); //Ordenar pelo 'nome' de forma Ascendente
-
-        return criteria.list();
+        return this.entityManager.createQuery(sb.toString()).getResultList();
     }
 
     public Produto findById(Long id) {

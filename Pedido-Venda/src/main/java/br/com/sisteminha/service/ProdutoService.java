@@ -33,7 +33,7 @@ public class ProdutoService implements Serializable {
         if (produtoExistente != null && !produtoExistente.equals(produto)) { //E se não for o mesmo produto
             throw new NegocioException("Já existe um produto com o SKU informado.");
         }
-        return this.produtoRepository.guardar(produto);
+        return this.produtoRepository.salvar(produto);
     }
     
     public List<Produto> findByFilter(ProdutoFilter filtro) {

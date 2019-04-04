@@ -1,6 +1,7 @@
 package br.com.sisteminha.service;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -23,8 +24,24 @@ public class CategoriaService implements Serializable {
 	@Inject
 	private CategoriaRepository categoriaRepository;
 
+	public Categoria salvar(Categoria categoria) {
+		return this.categoriaRepository.salvar(categoria);
+	}
+
+	public void remove(Categoria categoria) {
+		this.categoriaRepository.remove(categoria);
+	}
+
+	public List<Categoria> findByFilter(String descricao) {
+		return this.categoriaRepository.findByFilter(descricao);
+	}
+
 	public Categoria findById(Long id) {
 		return this.categoriaRepository.findById(id);
+	}
+
+	public List<Categoria> findByNome(String descricao) {
+		return this.categoriaRepository.findByNome(descricao);
 	}
 
 }
