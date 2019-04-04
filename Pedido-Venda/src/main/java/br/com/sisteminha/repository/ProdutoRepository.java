@@ -37,9 +37,9 @@ public class ProdutoRepository implements Serializable {
     }
 
     @Transactional
-    public void remover(Produto produto) {
+    public void remove(Produto produto) {
         try {
-            produto = porId(produto.getId()); //Busca produto
+            produto = findById(produto.getId()); //Busca produto
             entityManager.remove(produto);
             entityManager.flush(); //Faz todas as transações
         } catch (PersistenceException ex) {
@@ -48,7 +48,7 @@ public class ProdutoRepository implements Serializable {
 
     }
 
-    public Produto porSku(String sku) {
+    public Produto findBySku(String sku) {
         try {
             return entityManager.createQuery("from Produto where upper(sku) = :sku", Produto.class)
                     .setParameter("sku", sku.toUpperCase())
@@ -58,7 +58,7 @@ public class ProdutoRepository implements Serializable {
         }
     }
 
-    public List<Produto> filtrados(ProdutoFilter filtro) {
+    public List<Produto> findByFilter(ProdutoFilter filtro) {
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Produto.class); //Criar um criterio
 
@@ -75,11 +75,11 @@ public class ProdutoRepository implements Serializable {
         return criteria.list();
     }
 
-    public Produto porId(Long id) {
+    public Produto findById(Long id) {
         return entityManager.find(Produto.class, id);
     }
 
-    public List<Produto> porNome(String nome) {
+    public List<Produto> findByNome(String nome) {
         return this.entityManager.createQuery("from Produto where upper(nome) like :nome", Produto.class)
                 .setParameter("nome", nome.toUpperCase() + "%").getResultList();
     }

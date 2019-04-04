@@ -20,7 +20,7 @@ public class CategoriaRepository implements Serializable {
     @Inject
     private EntityManager manager;
 
-    public Categoria porId(Long id) {
+    public Categoria findById(Long id) {
         return manager.find(Categoria.class, id);
     }
 

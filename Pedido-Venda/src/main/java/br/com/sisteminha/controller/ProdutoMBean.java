@@ -13,7 +13,6 @@ import javax.validation.constraints.NotNull;
 import br.com.sisteminha.entity.Categoria;
 import br.com.sisteminha.entity.Produto;
 import br.com.sisteminha.repository.CategoriaRepository;
-import br.com.sisteminha.repository.ProdutoRepository;
 import br.com.sisteminha.repository.filter.ProdutoFilter;
 import br.com.sisteminha.service.ProdutoService;
 import br.com.sisteminha.util.jsf.FacesUtil;
@@ -32,10 +31,7 @@ public class ProdutoMBean implements Serializable {
 	private CategoriaRepository categorias;
 
 	@Inject
-	private ProdutoService cadastroProdutoService;
-
-	@Inject
-	private ProdutoRepository produtos;
+	private ProdutoService produtoService;
 
 	private ProdutoFilter filtro;
 
@@ -72,17 +68,17 @@ public class ProdutoMBean implements Serializable {
 	}
 
 	public void salvar() {
-		this.produto = cadastroProdutoService.salvar(produto);
+		this.produto = produtoService.salvar(produto);
 		limpar();
 		FacesUtil.addInfoMessage("Produto salvo com sucesso!");
 	}
 
 	public void pesquisar() {
-		produtosFiltrados = produtos.filtrados(filtro);
+		produtosFiltrados = produtoService.findByFilter(filtro);
 	}
 
 	public void excluir() {
-		produtos.remover(produtoSelecionado);
+		produtoService.remove(produtoSelecionado);
 		produtosFiltrados.remove(produtoSelecionado); // Exclui apenas o produto da lista
 		FacesUtil.addInfoMessage("Produto " + produtoSelecionado.getSku() + " excluído com sucesso.");
 	}

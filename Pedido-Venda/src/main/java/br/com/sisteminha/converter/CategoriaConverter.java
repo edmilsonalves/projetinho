@@ -1,26 +1,26 @@
 package br.com.sisteminha.converter;
 
-import br.com.sisteminha.entity.Categoria;
-import br.com.sisteminha.repository.CategoriaRepository;
-import br.com.sisteminha.util.cdi.CDIServiceLocator;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+import br.com.sisteminha.entity.Categoria;
+import br.com.sisteminha.service.CategoriaService;
+import br.com.sisteminha.util.cdi.CDIServiceLocator;
+
 /**
  *
- * @author Diego Arantes
+ * @author Edmilson Reis
  */
 @FacesConverter(forClass = Categoria.class)
 public class CategoriaConverter implements Converter {
 
     //@Inject   Usar EJB é muito melhor
-    private CategoriaRepository categorias;
+    private CategoriaService categoriaService;
 
     public CategoriaConverter() {
-        categorias = CDIServiceLocator.getBean(CategoriaRepository.class);
+        this.categoriaService = CDIServiceLocator.getBean(CategoriaService.class);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class CategoriaConverter implements Converter {
         Categoria retorno = null;
         if (string != null) {
             Long id = new Long(string);
-            retorno = categorias.porId(id);
+            retorno = this.categoriaService.findById(id);
         }
         return retorno;
     }

@@ -28,7 +28,7 @@ public class ProdutoConverter implements Converter {
         Produto retorno = null;
         if (string != null) {
             Long id = new Long(string);
-            retorno = produtos.porId(id);
+            retorno = produtos.findById(id);
         }
         return retorno;
     }
