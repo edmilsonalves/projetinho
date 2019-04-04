@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template/LayoutPadrao.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="titulo">#{produtoMBean.editando ? 'Edição de Produto' : 'Novo Produto'}</ui:define>
+
+    <ui:define name="corpo">
+        <f:metadata>
+            <f:viewParam name="produto" value="#{produtoMBean.produto}"/>
+            <f:event listener="#{produtoMBean.inicializar}" type="preRenderView"/>
+        </f:metadata>
+        <h:form>
+            <h1>#{produtoMBean.editando ? 'Edição de Produto' : 'Novo Produto'}</h1>
+
+            <p:messages autoUpdate="true" closable="true"/>
+            <p:toolbar style="margin-top: 20px">
+                <p:toolbarGroup>
+
+                    <p:button value="Novo" outcome="/produtos/form"/>
+                    <p:commandButton value="Salvar" id="botaoSalvar" action="#{produtoMBean.salvar}" update="@form" />
+
+                </p:toolbarGroup>
+
+                <p:toolbarGroup align="right">
+                    <p:button value="Pesquisa" outcome="/produtos/list"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+                         columnClasses="rotulo, campo">
+                <p:outputLabel value="SKU" for="sku"/>
+                <p:inputText id="sku" size="20" maxlength="20" value="#{produtoMBean.produto.sku}"/>
+
+                <p:outputLabel value="Nome" for="nome"/>
+                <p:inputText id="nome" size="60" maxlength="80" value="#{produtoMBean.produto.nome}"/>
+
+                <p:outputLabel value="Categoria" for="categoria"/>
+                <p:selectOneMenu id="categoria" value="#{produtoMBean.categoriaPai}">
+                    <f:selectItem itemLabel="Selecione a categoria"/>
+                    <f:selectItems value="#{produtoMBean.categoriaRaizes}" var="categoria" 
+                                   itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
+                    <p:ajax listener="#{produtoMBean.carregarSubcategorias}" update="subcategoria"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Subcategoria" for="subcategoria"/>
+                <p:selectOneMenu id="subcategoria" value="#{produtoMBean.produto.categoria}">
+                    <f:selectItem itemLabel="Selecione a Subcategoria"/>
+                    <f:selectItems value="#{produtoMBean.subcategorias}" var="subcategoria" 
+                                   itemValue="#{subcategoria}" itemLabel="#{subcategoria.descricao}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Valor unitário" for="valorUnitario"/>
+                <p:inputText id="valorUnitario" size="10" maxlength="10" styleClass="moeda" value="#{produtoMBean.produto.valorUnitario}">
+                    <f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+                </p:inputText>
+
+                <p:outputLabel value="Estoque" for="estoque"/>
+                <p:inputText id="estoque" size="10" maxlength="5" value="#{produtoMBean.produto.quantidadeEstoque}"/>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+
+
+</ui:composition>
