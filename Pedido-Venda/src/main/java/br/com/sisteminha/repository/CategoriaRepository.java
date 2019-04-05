@@ -9,6 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
 import br.com.sisteminha.entity.Categoria;
+import br.com.sisteminha.entity.Produto;
+import br.com.sisteminha.entity.Categoria;
 import br.com.sisteminha.service.NegocioException;
 import br.com.sisteminha.util.jpa.Transactional;
 
@@ -35,22 +37,22 @@ public class CategoriaRepository implements Serializable {
                 .getResultList();
     }
     
+    public void remove(Categoria categoria) {
+        try {
+            categoria = findById(categoria.getId()); //Busca categoria
+            entityManager.remove(categoria);
+            entityManager.flush(); //Faz todas as transações
+        } catch (PersistenceException ex) {
+            throw new NegocioException("Categoria não pode ser excluído.");
+        }
+
+    }
+    
     public Categoria salvar(Categoria categoria) {
         return entityManager.merge(categoria);
     }
 
-    @Transactional
-    public void remove(Categoria categoria) {
-        try {
-        	categoria = findById(categoria.getId()); //Busca produto
-            entityManager.remove(categoria);
-            entityManager.flush(); //Faz todas as transações
-        } catch (PersistenceException ex) {
-            throw new NegocioException("Produto não pode ser excluído.");
-        }
-
-    }
-
+    
     @SuppressWarnings("unchecked")
 	public List<Categoria> findByFilter(String descricao) {
     	

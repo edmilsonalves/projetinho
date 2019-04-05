@@ -32,7 +32,7 @@
             </p:panelGrid>
 
             <p:dataTable id="categoriasTable" value="#{categoriaMBean.categoriasFiltrados}" var="categoria"
-                         style="margin-top: 20px" emptyMessage="Nenhum produto encontrado." rows="20" 
+                         style="margin-top: 20px" emptyMessage="Nenhum categoria encontrado." rows="20" 
                          paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
                 <p:column headerText="Descricao">
                     <h:outputText value="#{categoria.descricao}"/>
@@ -40,7 +40,7 @@
                 
                 <p:column style="text-align: center" width="100">
                     <p:button icon="ui-icon-pencil" title="Editar" outcome="/categorias/form">
-                        <f:param name="produto" value="#{produto.id}"/>
+                        <f:param name="categoria" value="#{categoria.id}"/>
                     </p:button>
                     <p:commandButton id="btExcluir" icon="ui-icon-trash" title="Excluir" process="@this" update="categoriasTable" action="#{categoriaMBean.excluir}">
                         <p:confirm header="Confirmação" message="Tem certeza que deseja excluir a categoria ?" icon="ui-icon-alert" />

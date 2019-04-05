@@ -36,7 +36,9 @@ public class CategoriaConverter implements Converter {
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
         if (o != null) {
-            return ((Categoria) o).getId().toString();
+        	Categoria categoria = (Categoria) o;
+        	
+            return categoria != null && categoria.getId() != null ? categoria.getId().toString() : null;
         }
         return "";
     }
