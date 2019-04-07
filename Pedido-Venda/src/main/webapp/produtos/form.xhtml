@@ -10,10 +10,6 @@
     <ui:define name="titulo">#{produtoMBean.editando ? 'Edição de Produto' : 'Novo Produto'}</ui:define>
 
     <ui:define name="corpo">
-        <f:metadata>
-            <f:viewParam name="produto" value="#{produtoMBean.produto}"/>
-            <f:event listener="#{produtoMBean.inicializar}" type="preRenderView"/>
-        </f:metadata>
         <h:form>
             <h1>#{produtoMBean.editando ? 'Edição de Produto' : 'Novo Produto'}</h1>
 

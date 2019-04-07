@@ -10,6 +10,8 @@
     <ui:define name="titulo">Pesquisa produtos</ui:define>
 
     <ui:define name="corpo">
+    
+    
         <h:form id="frmPesquisa"> 
             <h1>Pesquisa produtos</h1>
 
@@ -54,13 +56,14 @@
                     <h:outputText value="#{produto.quantidadeEstoque}"/>
                 </p:column>
                 <p:column style="text-align: center" width="100">
-                    <p:button icon="ui-icon-pencil" title="Editar" outcome="/produtos/form">
-                        <f:param name="produto" value="#{produto.id}"/>
-                    </p:button>
+                    
+                    <p:commandButton id="btEdit" icon="ui-icon-pencil" title="Alterar" process="@this" update="produtosTable" action="#{produtoMBean.edit(produto)}" />
+
                     <p:commandButton id="btExcluir" icon="ui-icon-trash" title="Excluir" process="@this" update="produtosTable" action="#{produtoMBean.excluir}">
                         <p:confirm header="Confirmação" message="Tem certeza que deseja excluir o produto ?" icon="ui-icon-alert" />
                         <f:setPropertyActionListener target="#{produtoMBean.produtoSelecionado}" value="#{produto}"/>
                     </p:commandButton>
+                    
                 </p:column>
             </p:dataTable>
 

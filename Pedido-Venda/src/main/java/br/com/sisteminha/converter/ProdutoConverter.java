@@ -11,7 +11,7 @@ import javax.faces.convert.FacesConverter;
 
 /**
  *
- * @author Diego Arantes
+ * @author Edmilson reis
  */
 @FacesConverter(forClass = Produto.class)
 public class ProdutoConverter implements Converter {

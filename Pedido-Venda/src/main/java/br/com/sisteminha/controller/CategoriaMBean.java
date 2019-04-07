@@ -57,6 +57,7 @@ public class CategoriaMBean implements Serializable {
 
 	private void limpar() {
 		categoria = new Categoria();
+		categoriaSelecionado = new Categoria();
 	}
 
 	public boolean isEditando() {

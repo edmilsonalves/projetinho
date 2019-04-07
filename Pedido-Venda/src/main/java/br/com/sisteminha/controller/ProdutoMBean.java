@@ -26,6 +26,8 @@ import br.com.sisteminha.util.jsf.FacesUtil;
 public class ProdutoMBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static final String PRODUTO_FORM = "/produtos/form";
 
 	@Inject
 	private CategoriaRepository categorias;
@@ -73,6 +75,12 @@ public class ProdutoMBean implements Serializable {
 		this.produto = produtoService.salvar(produto);
 		limpar();
 		FacesUtil.addInfoMessage("Produto salvo com sucesso!");
+	}
+	
+	public String edit(Produto produto) {
+		this.produto = produto;		
+		
+		return PRODUTO_FORM;
 	}
 
 	public void pesquisar() {
