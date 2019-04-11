@@ -1,4 +1,4 @@
-package br.com.sisteminha.repository.filter;
+package br.com.sisteminha.dto;
 
 import java.io.Serializable;
 

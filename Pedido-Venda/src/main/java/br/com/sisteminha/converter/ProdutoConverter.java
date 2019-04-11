@@ -1,7 +1,7 @@
 package br.com.sisteminha.converter;
 
+import br.com.sisteminha.dao.ProdutoDAO;
 import br.com.sisteminha.entity.Produto;
-import br.com.sisteminha.repository.ProdutoRepository;
 import br.com.sisteminha.util.cdi.CDIServiceLocator;
 
 import javax.faces.component.UIComponent;
@@ -17,10 +17,10 @@ import javax.faces.convert.FacesConverter;
 public class ProdutoConverter implements Converter {
 
     //@Inject   Usar EJB é muito melhor
-    private ProdutoRepository produtoRepository;
+    private ProdutoDAO produtoRepository;
 
     public ProdutoConverter() {
-        produtoRepository = CDIServiceLocator.getBean(ProdutoRepository.class);
+        produtoRepository = CDIServiceLocator.getBean(ProdutoDAO.class);
     }
 
     @Override

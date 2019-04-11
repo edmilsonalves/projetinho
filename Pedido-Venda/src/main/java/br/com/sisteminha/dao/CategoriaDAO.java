@@ -1,4 +1,4 @@
-package br.com.sisteminha.repository;
+package br.com.sisteminha.dao;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,17 +9,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
 import br.com.sisteminha.entity.Categoria;
-import br.com.sisteminha.entity.Produto;
-import br.com.sisteminha.entity.Categoria;
-import br.com.sisteminha.service.NegocioException;
-import br.com.sisteminha.util.jpa.Transactional;
+import br.com.sisteminha.service.BusinessException;
 
 /**
  *
  * @author Edmilson Reis
  */
 @Dependent
-public class CategoriaRepository implements Serializable {
+public class CategoriaDAO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -43,7 +40,7 @@ public class CategoriaRepository implements Serializable {
             entityManager.remove(categoria);
             entityManager.flush(); //Faz todas as transações
         } catch (PersistenceException ex) {
-            throw new NegocioException("Categoria não pode ser excluído.");
+            throw new BusinessException("Categoria não pode ser excluído pois está sendo utilizada em algum produto.");
         }
 
     }

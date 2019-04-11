@@ -1,6 +1,5 @@
 package br.com.sisteminha.controller;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +9,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
+import br.com.sisteminha.dao.CategoriaDAO;
+import br.com.sisteminha.dto.ProdutoFilter;
 import br.com.sisteminha.entity.Categoria;
 import br.com.sisteminha.entity.Produto;
-import br.com.sisteminha.repository.CategoriaRepository;
-import br.com.sisteminha.repository.filter.ProdutoFilter;
 import br.com.sisteminha.service.ProdutoService;
 
 /**
@@ -31,7 +30,7 @@ public class ProdutoMBean extends BasicMBean {
 	private static final String PRODUTO = "produto";
 
 	@Inject
-	private CategoriaRepository categorias;
+	private CategoriaDAO categorias;
 
 	@Inject
 	private ProdutoService produtoService;
@@ -63,7 +62,7 @@ public class ProdutoMBean extends BasicMBean {
 		
 		carregarCategorias();
 		this.filtro = new ProdutoFilter();
-		this.produtosFiltrados = produtoService.findByFilter(filtro);
+		this.produtosFiltrados = this.produtoService.findByFilter(filtro);
 	}
 
 	public void carregarCategorias() {
@@ -81,7 +80,7 @@ public class ProdutoMBean extends BasicMBean {
 	}
 
 	public void carregarSubcategorias() {
-		subcategorias = categorias.subCategoriasDe(categoriaPai);
+		this.subcategorias = categorias.subCategoriasDe(categoriaPai);
 	}
 
 	public String salvar() {
@@ -93,19 +92,19 @@ public class ProdutoMBean extends BasicMBean {
 	}
 
 	public void pesquisar() {
-		produtosFiltrados = produtoService.findByFilter(filtro);
+		this.produtosFiltrados = this.produtoService.findByFilter(filtro);
 	}
 
 	public void excluir() {
-		produtoService.remove(produtoSelecionado);
-		produtosFiltrados.remove(produtoSelecionado); // Exclui apenas o produto da lista
-		super.addInfoMessage("Produto " + produtoSelecionado.getSku() + " excluído com sucesso.");
+		this.produtoService.remove(this.produtoSelecionado);
+		this.produtosFiltrados.remove(this.produtoSelecionado); // Exclui apenas o produto da lista
+		super.addInfoMessage("Produto " + this.produtoSelecionado.getSku() + " excluído com sucesso.");
 	}
 
 	private void limpar() {
-		produto = new Produto();
-		categoriaPai = null;
-		subcategorias = new ArrayList<>();
+		this.produto = new Produto();
+		this.categoriaPai = null;
+		this.subcategorias = new ArrayList<>();
 	}
 
 	public Produto getProduto() {

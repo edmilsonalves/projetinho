@@ -7,8 +7,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.sisteminha.dao.CategoriaDAO;
 import br.com.sisteminha.entity.Categoria;
-import br.com.sisteminha.repository.CategoriaRepository;
 
 /**
  * Regras de Negócio Cadastro de Produtos
@@ -22,26 +22,26 @@ public class CategoriaService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private CategoriaRepository categoriaRepository;
+	private CategoriaDAO categoriaDao;
 
 	public Categoria salvar(Categoria categoria) {
-		return this.categoriaRepository.salvar(categoria);
+		return this.categoriaDao.salvar(categoria);
 	}
 
 	public void remove(Categoria categoria) {
-		this.categoriaRepository.remove(categoria);
+		this.categoriaDao.remove(categoria);
 	}
 
 	public List<Categoria> findByFilter(String descricao) {
-		return this.categoriaRepository.findByFilter(descricao);
+		return this.categoriaDao.findByFilter(descricao);
 	}
 
 	public Categoria findById(Long id) {
-		return this.categoriaRepository.findById(id);
+		return this.categoriaDao.findById(id);
 	}
 
 	public List<Categoria> findByNome(String descricao) {
-		return this.categoriaRepository.findByNome(descricao);
+		return this.categoriaDao.findByNome(descricao);
 	}
 
 }

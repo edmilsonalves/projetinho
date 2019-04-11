@@ -1,4 +1,4 @@
-package br.com.sisteminha.repository;
+package br.com.sisteminha.dao;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,9 +15,9 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.sisteminha.dto.ProdutoFilter;
 import br.com.sisteminha.entity.Produto;
-import br.com.sisteminha.repository.filter.ProdutoFilter;
-import br.com.sisteminha.service.NegocioException;
+import br.com.sisteminha.service.BusinessException;
 import br.com.sisteminha.util.jpa.Transactional;
 
 /**
@@ -25,7 +25,7 @@ import br.com.sisteminha.util.jpa.Transactional;
  * @author Edmilson Reis
  */
 @Dependent
-public class ProdutoRepository implements Serializable {
+public class ProdutoDAO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -43,7 +43,7 @@ public class ProdutoRepository implements Serializable {
             entityManager.remove(produto);
             entityManager.flush(); //Faz todas as transações
         } catch (PersistenceException ex) {
-            throw new NegocioException("Produto não pode ser excluído.");
+            throw new BusinessException("Produto não pode ser excluído.");
         }
 
     }

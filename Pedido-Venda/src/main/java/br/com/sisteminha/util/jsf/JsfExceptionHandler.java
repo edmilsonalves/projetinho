@@ -13,7 +13,7 @@ import javax.faces.event.ExceptionQueuedEventContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import br.com.sisteminha.service.NegocioException;
+import br.com.sisteminha.service.BusinessException;
 
 /**
  *
@@ -44,7 +44,7 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
             //Recupera a exception
             Throwable exception = context.getException();
 
-            NegocioException negocioException = getNegocioException(exception);
+            BusinessException negocioException = getNegocioException(exception);
 
             boolean handled = false; //tratado
 
@@ -74,9 +74,9 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
     }
 
     //Desmonta as exceções para ver se á um NegocioException 
-    private NegocioException getNegocioException(Throwable exception) {
-        if (exception instanceof NegocioException) {
-            return (NegocioException) exception;
+    private BusinessException getNegocioException(Throwable exception) {
+        if (exception instanceof BusinessException) {
+            return (BusinessException) exception;
         } else if (exception.getCause() != null) {
             return getNegocioException(exception.getCause());
         }

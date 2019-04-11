@@ -1,10 +1,10 @@
 package br.com.sisteminha.service;
 
-public class NegocioException extends RuntimeException {
+public class BusinessException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public NegocioException(String msg) {
+	public BusinessException(String msg) {
 		super(msg);
 	}
 	
