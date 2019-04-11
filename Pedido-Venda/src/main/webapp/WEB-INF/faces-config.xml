@@ -10,10 +10,6 @@
         <locale-config>
             <default-locale>pt_BR</default-locale>
    	 	</locale-config>
-   	 	
-  	 	<el-resolver>
-       		org.springframework.web.jsf.el.SpringBeanFacesELResolver
-   		</el-resolver>
     </application>   
     
 
@@ -23,5 +19,4 @@
             br.com.sisteminha.util.jsf.JsfExceptionHandlerFactory
         </exception-handler-factory>
     </factory>
-    
 </faces-config>

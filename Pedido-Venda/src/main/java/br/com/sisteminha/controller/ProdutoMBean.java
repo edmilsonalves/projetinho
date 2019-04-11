@@ -15,19 +15,20 @@ import br.com.sisteminha.entity.Produto;
 import br.com.sisteminha.repository.CategoriaRepository;
 import br.com.sisteminha.repository.filter.ProdutoFilter;
 import br.com.sisteminha.service.ProdutoService;
-import br.com.sisteminha.util.jsf.FacesUtil;
 
 /**
  *
  * @author Edmilson Reis
  */
-@Named(value = "produtoMBean")
+@Named
 @ViewScoped
-public class ProdutoMBean implements Serializable {
+public class ProdutoMBean extends BasicMBean {
 
 	private static final long serialVersionUID = 1L;
 	
-	private static final String PRODUTO_FORM = "/produtos/form";
+	private static final String PAGE_LIST = "/produtos/list?faces-redirect=true";
+	private static final String PAGE_EDIT = "/produtos/form?faces-redirect=true";
+	private static final String PRODUTO = "produto";
 
 	@Inject
 	private CategoriaRepository categorias;
@@ -51,36 +52,44 @@ public class ProdutoMBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		filtro = new ProdutoFilter();
-		limpar();
 		
-		produtosFiltrados = produtoService.findByFilter(filtro);
+		this.produto = super.getFlashAttribute(PRODUTO);
+		
+		if(this.produto == null) {
+			limpar();
+		}else {
+			this.categoriaPai = this.produto.getCategoria().getCategoriaPai();
+		}
+		
+		carregarCategorias();
+		this.filtro = new ProdutoFilter();
+		this.produtosFiltrados = produtoService.findByFilter(filtro);
 	}
 
-	public void inicializar() {
-		if (FacesUtil.isNotPostBack()) { // Se não for post back não faça a consulta
-			categoriaRaizes = categorias.raizes();
+	public void carregarCategorias() {
+		this.categoriaRaizes = categorias.raizes();
 
-			if (categoriaPai != null) {
-				carregarSubcategorias();
-			}
+		if (this.categoriaPai != null) {
+			carregarSubcategorias();
 		}
+	}
+	
+	public String edit(Produto produto) {
+		super.putFlashAttribute(PRODUTO, produto);
+		
+		return PAGE_EDIT;
 	}
 
 	public void carregarSubcategorias() {
 		subcategorias = categorias.subCategoriasDe(categoriaPai);
 	}
 
-	public void salvar() {
+	public String salvar() {
 		this.produto = produtoService.salvar(produto);
 		limpar();
-		FacesUtil.addInfoMessage("Produto salvo com sucesso!");
-	}
-	
-	public String edit(Produto produto) {
-		this.produto = produto;		
+		super.addInfoMessage("Produto salvo com sucesso!");
 		
-		return PRODUTO_FORM;
+		return PAGE_LIST;
 	}
 
 	public void pesquisar() {
@@ -90,7 +99,7 @@ public class ProdutoMBean implements Serializable {
 	public void excluir() {
 		produtoService.remove(produtoSelecionado);
 		produtosFiltrados.remove(produtoSelecionado); // Exclui apenas o produto da lista
-		FacesUtil.addInfoMessage("Produto " + produtoSelecionado.getSku() + " excluído com sucesso.");
+		super.addInfoMessage("Produto " + produtoSelecionado.getSku() + " excluído com sucesso.");
 	}
 
 	private void limpar() {
@@ -104,7 +113,6 @@ public class ProdutoMBean implements Serializable {
 	}
 
 	public void setProduto(Produto produto) {
-		System.out.println("CHAMOOOU O MÈTODOOOOOOOOOOO");
 		this.produto = produto;
 
 		if (this.produto != null) {

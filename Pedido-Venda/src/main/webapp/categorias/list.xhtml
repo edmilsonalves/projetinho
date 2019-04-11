@@ -41,7 +41,7 @@
                 <p:column style="text-align: center" width="100">
                     <p:button icon="ui-icon-pencil" title="Editar" outcome="/categorias/form">
                         <f:param name="categoria" value="#{categoria.id}"/>
-                    </p:button>                    
+                    </p:button>
                     <p:commandButton id="btExcluir" icon="ui-icon-trash" title="Excluir" process="@this" update="categoriasTable" action="#{categoriaMBean.excluir}">
                         <p:confirm header="Confirmação" message="Tem certeza que deseja excluir a categoria ?" icon="ui-icon-alert" />
                         <f:setPropertyActionListener target="#{categoriaMBean.categoriaSelecionado}" value="#{categoria}"/>

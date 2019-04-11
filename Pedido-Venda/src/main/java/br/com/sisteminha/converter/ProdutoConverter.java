@@ -11,16 +11,16 @@ import javax.faces.convert.FacesConverter;
 
 /**
  *
- * @author Edmilson reis
+ * @author Diego Arantes
  */
 @FacesConverter(forClass = Produto.class)
 public class ProdutoConverter implements Converter {
 
     //@Inject   Usar EJB é muito melhor
-    private ProdutoRepository produtos;
+    private ProdutoRepository produtoRepository;
 
     public ProdutoConverter() {
-        produtos = CDIServiceLocator.getBean(ProdutoRepository.class);
+        produtoRepository = CDIServiceLocator.getBean(ProdutoRepository.class);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ProdutoConverter implements Converter {
         Produto retorno = null;
         if (string != null) {
             Long id = new Long(string);
-            retorno = produtos.findById(id);
+            retorno = produtoRepository.findById(id);
         }
         return retorno;
     }

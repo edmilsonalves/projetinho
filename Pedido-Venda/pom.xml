@@ -112,42 +112,7 @@
             <version>1.2</version>
             <scope>compile</scope>
         </dependency>
-        
-        
-        
-        
-        
-        
-        <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>1.5.19.RELEASE</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-undertow</artifactId>
-			<version>1.5.19.RELEASE</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>1.5.19.RELEASE</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-			    <artifactId>spring-boot-actuator</artifactId>
-			    <version>1.5.19.RELEASE</version>
-			</dependency>
-    	</dependencies>
+    </dependencies>
     
     <repositories>
         
