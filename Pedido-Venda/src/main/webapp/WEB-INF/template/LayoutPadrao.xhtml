@@ -13,14 +13,14 @@
     </h:head>
     <h:body>
 
-        <p:ajaxStatus class="ajax-status" onsuccess="configurarMoeda()">
-            <f:facet name="start">
-                <h:graphicImage library="images" name="carregando.gif"/>
-            </f:facet>
-            <f:facet name="complete">
-                <h:outputText value=""/>
-            </f:facet>
-        </p:ajaxStatus>
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()" />
+	
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<p:graphicImage library="images" name="load.gif" />
+		</p:dialog>
+        
 
         <header>
             <div style="float: left">
