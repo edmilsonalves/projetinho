@@ -1,18 +1,16 @@
 package br.com.sisteminha.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.constraints.NotNull;
 
-import br.com.sisteminha.dao.CategoriaDAO;
 import br.com.sisteminha.dto.ProdutoFilter;
 import br.com.sisteminha.entity.Categoria;
 import br.com.sisteminha.entity.Produto;
+import br.com.sisteminha.service.CategoriaService;
 import br.com.sisteminha.service.ProdutoService;
 
 /**
@@ -30,7 +28,7 @@ public class ProdutoMBean extends BasicMBean {
 	private static final String PRODUTO = "produto";
 
 	@Inject
-	private CategoriaDAO categorias;
+	private CategoriaService categoriaService;
 
 	@Inject
 	private ProdutoService produtoService;
@@ -43,11 +41,7 @@ public class ProdutoMBean extends BasicMBean {
 
 	private Produto produto;
 
-	@NotNull
-	private Categoria categoriaPai;
-
-	private List<Categoria> categoriaRaizes;
-	private List<Categoria> subcategorias;
+	private List<Categoria> categorias;
 
 	@PostConstruct
 	public void init() {
@@ -55,23 +49,14 @@ public class ProdutoMBean extends BasicMBean {
 		this.produto = super.getFlashAttribute(PRODUTO);
 		
 		if(this.produto == null) {
-			limpar();
-		}else {
-			this.categoriaPai = this.produto.getCategoria().getCategoriaPai();
+			this.produto = new Produto();
 		}
 		
-		carregarCategorias();
+		this.categorias = this.categoriaService.findAll();
 		this.filtro = new ProdutoFilter();
 		this.produtosFiltrados = this.produtoService.findByFilter(filtro);
 	}
 
-	public void carregarCategorias() {
-		this.categoriaRaizes = categorias.raizes();
-
-		if (this.categoriaPai != null) {
-			carregarSubcategorias();
-		}
-	}
 	
 	public String edit(Produto produto) {
 		super.putFlashAttribute(PRODUTO, produto);
@@ -79,13 +64,9 @@ public class ProdutoMBean extends BasicMBean {
 		return PAGE_EDIT;
 	}
 
-	public void carregarSubcategorias() {
-		this.subcategorias = categorias.subCategoriasDe(categoriaPai);
-	}
-
 	public String salvar() {
 		this.produto = produtoService.salvar(produto);
-		limpar();
+		this.produto = new Produto();
 		super.addInfoMessage("Produto salvo com sucesso!");
 		
 		return PAGE_LIST;
@@ -101,11 +82,6 @@ public class ProdutoMBean extends BasicMBean {
 		super.addInfoMessage("Produto " + this.produtoSelecionado.getSku() + " excluído com sucesso.");
 	}
 
-	private void limpar() {
-		this.produto = new Produto();
-		this.categoriaPai = null;
-		this.subcategorias = new ArrayList<>();
-	}
 
 	public Produto getProduto() {
 		return produto;
@@ -113,30 +89,14 @@ public class ProdutoMBean extends BasicMBean {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
-
-		if (this.produto != null) {
-			this.categoriaPai = this.produto.getCategoria().getCategoriaPai();
-		}
 	}
 
 	public boolean isEditando() {
 		return this.produto.getId() != null;
 	}
 
-	public List<Categoria> getCategoriaRaizes() {
-		return categoriaRaizes;
-	}
-
-	public Categoria getCategoriaPai() {
-		return categoriaPai;
-	}
-
-	public void setCategoriaPai(Categoria categoriaPai) {
-		this.categoriaPai = categoriaPai;
-	}
-
-	public List<Categoria> getSubcategorias() {
-		return subcategorias;
+	public List<Categoria> getCategorias() {
+		return categorias;
 	}
 
 	public List<Produto> getProdutosFiltrados() {

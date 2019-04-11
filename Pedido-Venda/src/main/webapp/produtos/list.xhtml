@@ -44,7 +44,7 @@
                     <h:outputText value="#{produto.nome}"/>
                 </p:column>
                 <p:column headerText="Categoria" width="250">
-                    <h:outputText value="#{produto.categoria.categoriaPai.descricao} - #{produto.categoria.descricao}"/>
+                    <h:outputText value="#{produto.categoria.descricao}"/>
                 </p:column>
                 <p:column headerText="Valor unitário" style="text-align: right" width="120">
                     <h:outputText value="#{produto.valorUnitario}">

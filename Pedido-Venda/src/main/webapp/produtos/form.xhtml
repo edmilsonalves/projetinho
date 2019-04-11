@@ -32,18 +32,10 @@
                 <p:inputText id="nome" size="60" maxlength="80" value="#{produtoMBean.produto.nome}"/>
 
                 <p:outputLabel value="Categoria" for="categoria"/>
-                <p:selectOneMenu id="categoria" value="#{produtoMBean.categoriaPai}">
+                <p:selectOneMenu id="categoria" value="#{produtoMBean.produto.categoria}">
                     <f:selectItem itemLabel="Selecione a categoria"/>
-                    <f:selectItems value="#{produtoMBean.categoriaRaizes}" var="categoria" 
+                    <f:selectItems value="#{produtoMBean.categorias}" var="categoria" 
                                    itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
-                    <p:ajax listener="#{produtoMBean.carregarSubcategorias}" update="subcategoria"/>
-                </p:selectOneMenu>
-
-                <p:outputLabel value="Subcategoria" for="subcategoria"/>
-                <p:selectOneMenu id="subcategoria" value="#{produtoMBean.produto.categoria}">
-                    <f:selectItem itemLabel="Selecione a Subcategoria"/>
-                    <f:selectItems value="#{produtoMBean.subcategorias}" var="subcategoria" 
-                                   itemValue="#{subcategoria}" itemLabel="#{subcategoria.descricao}"/>
                 </p:selectOneMenu>
 
                 <p:outputLabel value="Valor unitário" for="valorUnitario"/>

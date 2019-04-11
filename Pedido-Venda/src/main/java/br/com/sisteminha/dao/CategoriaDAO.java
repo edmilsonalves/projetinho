@@ -23,17 +23,10 @@ public class CategoriaDAO implements Serializable {
     @Inject
     private EntityManager entityManager;
 
-    public List<Categoria> raizes() {
-        return entityManager.createQuery("from Categoria where categoriaPai is null", Categoria.class).getResultList();
+    public List<Categoria> findAll() {
+        return entityManager.createQuery("from Categoria", Categoria.class).getResultList();
     }
 
-    public List<Categoria> subCategoriasDe(Categoria categoriaPai) {
-        return entityManager.createQuery("from Categoria where categoriaPai = :raiz",
-                Categoria.class)
-                .setParameter("raiz", categoriaPai)
-                .getResultList();
-    }
-    
     public void remove(Categoria categoria) {
         try {
             categoria = findById(categoria.getId()); //Busca categoria

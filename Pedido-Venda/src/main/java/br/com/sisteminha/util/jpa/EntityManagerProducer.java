@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author Diego Arantes
+ * @author Edmilson reis
  */
 @ApplicationScoped
 public class EntityManagerProducer {

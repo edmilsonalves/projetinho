@@ -8,7 +8,7 @@ import javax.interceptor.InterceptorBinding;
 
 /**
  *
- * @author Diego Arantes
+ * @author Edmilson reis
  */
 @InterceptorBinding
 @Retention(RetentionPolicy.RUNTIME)

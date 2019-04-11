@@ -44,4 +44,8 @@ public class CategoriaService implements Serializable {
 		return this.categoriaDao.findByNome(descricao);
 	}
 
+	public List<Categoria> findAll() {
+		return this.categoriaDao.findAll();
+	}
+
 }

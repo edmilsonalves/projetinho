@@ -1,17 +1,12 @@
 package br.com.sisteminha.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,49 +22,23 @@ public class Categoria implements Serializable {
     @Column(nullable = false, length = 60)
     private String descricao;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_pai_id")
-    private Categoria categoriaPai;
-
-    @OneToMany(mappedBy = "categoriaPai", cascade = CascadeType.ALL)
-    private List<Categoria> subcategorias = new ArrayList<>();
-
-    public Categoria() {
-    }
-
     public Long getId() {
-        return id;
-    }
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getDescricao() {
-        return descricao;
-    }
+	public String getDescricao() {
+		return descricao;
+	}
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
-    public Categoria getCategoriaPai() {
-        return categoriaPai;
-    }
-
-    public void setCategoriaPai(Categoria categoriaPai) {
-        this.categoriaPai = categoriaPai;
-    }
-
-    public List<Categoria> getSubcategorias() {
-        return subcategorias;
-    }
-
-    public void setSubcategorias(List<Categoria> subcategorias) {
-        this.subcategorias = subcategorias;
-    }
-
-    @Override
+	@Override
     public int hashCode() {
         int hash = 7;
         hash = 47 * hash + Objects.hashCode(this.id);
