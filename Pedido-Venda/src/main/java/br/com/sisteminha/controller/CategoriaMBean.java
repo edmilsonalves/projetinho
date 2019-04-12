@@ -42,6 +42,7 @@ public class CategoriaMBean implements Serializable {
 	public void salvar() {
 		this.categoria = this.categoriaService.salvar(this.categoria);
 		limpar();
+		this.categoriasFiltrados = this.categoriaService.findByFilter(this.descricao);
 		FacesUtil.addInfoMessage("Categoria salvo com sucesso!");
 	}
 
