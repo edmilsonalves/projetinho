@@ -42,14 +42,8 @@ public class CategoriaDAO implements Serializable {
     }
     
     @Transactional
-    public Categoria salvar(Categoria categoria) {
-    	
-    	EntityTransaction trx = entityManager.getTransaction();
-    	trx.begin();
-    	categoria = entityManager.merge(categoria);
-    	trx.commit();
-    	
-        return categoria;
+    public Categoria salvar(Categoria categoria) {    	
+        return this.entityManager.merge(categoria);
     }
 
     
