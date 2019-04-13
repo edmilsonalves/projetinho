@@ -30,13 +30,16 @@
 
                 <p:outputLabel value="Nome" for="nome"/>
                 <p:inputText id="nome" size="60" maxlength="80" value="#{produtoMBean.produto.nome}"/>
-
+                
                 <p:outputLabel value="Categoria" for="categoria"/>
-                <p:selectOneMenu id="categoria" value="#{produtoMBean.produto.categoria}">
-                    <f:selectItem itemLabel="Selecione a categoria"/>
-                    <f:selectItems value="#{produtoMBean.categorias}" var="categoria" 
-                                   itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
-                </p:selectOneMenu>
+	            <h:panelGroup>
+		            <p:selectOneMenu id="categoria" value="#{produtoMBean.produto.categoria}">
+		                <f:selectItem itemLabel="Selecione a categoria"/>
+		                <f:selectItems value="#{produtoMBean.categorias}" var="categoria" 
+		                               itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
+		            </p:selectOneMenu>
+		            <p:commandButton value="+" type="button" onclick="PF('dialogFormCategoria').show();" />
+	            </h:panelGroup>
 
                 <p:outputLabel value="Valor unitário" for="valorUnitario"/>
                 <p:inputText id="valorUnitario" size="10" maxlength="10" styleClass="moeda" value="#{produtoMBean.produto.valorUnitario}">
@@ -46,6 +49,36 @@
                 <p:outputLabel value="Estoque" for="estoque"/>
                 <p:inputText id="estoque" size="10" maxlength="5" value="#{produtoMBean.produto.quantidadeEstoque}"/>
             </p:panelGrid>
+            
+            <p:dialog header="Cadastro de categoria" widgetVar="dialogFormCategoria" modal="true" height="380" width="700">
+				<p:panelGrid columns="2" style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+
+					<p:outputLabel value="Descrição" for="descrição" />
+					<p:inputText id="descrição" size="60" maxlength="80" value="#{categoriaMBean.categoria.descricao}" />
+
+				</p:panelGrid>
+
+				<p:commandButton value="Salvar" id="btCategoriaSalvar" action="#{categoriaMBean.salvar}" update="@form" />
+			
+			  <p:dataTable id="categoriasTable" value="#{categoriaMBean.categoriasFiltrados}" var="categoria"
+                         style="margin-top: 20px" emptyMessage="Nenhum categoria encontrado." rows="5" 
+                         paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+                <p:column headerText="Descricao">
+                    <h:outputText value="#{categoria.descricao}"/>
+                </p:column>
+                
+                <p:column style="text-align: center" >
+                    <p:button icon="ui-icon-pencil" title="Editar" outcome="/categorias/form">
+                        <f:param name="categoria" value="#{categoria.id}"/>
+                    </p:button>
+                    <p:commandButton id="btExcluir" icon="ui-icon-trash" title="Excluir" process="@this" update="categoriasTable" action="#{categoriaMBean.excluir}">
+                        <p:confirm header="Confirmação" message="Tem certeza que deseja excluir a categoria ?" icon="ui-icon-alert" />
+                        <f:setPropertyActionListener target="#{categoriaMBean.categoriaSelecionado}" value="#{categoria}"/>
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+			</p:dialog> 
+			
         </h:form>
     </ui:define>
 

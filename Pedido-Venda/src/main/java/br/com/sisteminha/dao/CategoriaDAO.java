@@ -6,6 +6,7 @@ import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 
 import br.com.sisteminha.entity.Categoria;
@@ -42,7 +43,13 @@ public class CategoriaDAO implements Serializable {
     
     @Transactional
     public Categoria salvar(Categoria categoria) {
-        return entityManager.merge(categoria);
+    	
+    	EntityTransaction trx = entityManager.getTransaction();
+    	trx.begin();
+    	categoria = entityManager.merge(categoria);
+    	trx.commit();
+    	
+        return categoria;
     }
 
     
