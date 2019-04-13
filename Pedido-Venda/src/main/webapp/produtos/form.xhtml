@@ -33,12 +33,14 @@
                 
                 <p:outputLabel value="Categoria" for="categoria"/>
 	            <h:panelGroup>
-		            <p:selectOneMenu id="categoria" value="#{produtoMBean.produto.categoria}">
-		                <f:selectItem itemLabel="Selecione a categoria"/>
-		                <f:selectItems value="#{produtoMBean.categorias}" var="categoria" 
-		                               itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
-		            </p:selectOneMenu>
-		            <p:commandButton value="+" type="button" onclick="PF('dialogFormCategoria').show();" />
+	            	<p:panelGrid columns="2" styleClass="semBorda">
+			            <p:selectOneMenu id="categoria" value="#{produtoMBean.produto.categoria}">
+			                <f:selectItem itemLabel="Selecione a categoria"/>
+			                <f:selectItems value="#{produtoMBean.categorias}" var="categoria" 
+			                               itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
+			            </p:selectOneMenu>
+			            <p:commandButton id="vazio" value="+" type="button" onclick="PF('dialogFormCategoria').show();" />
+		            </p:panelGrid>
 	            </h:panelGroup>
 
                 <p:outputLabel value="Valor unitário" for="valorUnitario"/>

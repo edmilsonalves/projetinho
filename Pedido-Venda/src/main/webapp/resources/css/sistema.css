@@ -112,4 +112,7 @@ h1 {
 .menu-sistema .ui-icon-triangle-1-s {
     background: url(#{resource['images:seta-para-baixo.png']}) no-repeat;
 }
+
+.semBorda tr, .semBorda td { border: none !important; }
+
 /* Menu sistema fim */
