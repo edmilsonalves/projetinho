@@ -9,12 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
-
 import br.com.sisteminha.dto.ProdutoFilter;
 import br.com.sisteminha.entity.Produto;
 import br.com.sisteminha.service.BusinessException;

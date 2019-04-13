@@ -10,6 +10,7 @@ import javax.persistence.PersistenceException;
 
 import br.com.sisteminha.entity.Categoria;
 import br.com.sisteminha.service.BusinessException;
+import br.com.sisteminha.util.jpa.Transactional;
 
 /**
  *
@@ -27,6 +28,7 @@ public class CategoriaDAO implements Serializable {
         return entityManager.createQuery("from Categoria", Categoria.class).getResultList();
     }
 
+    @Transactional
     public void remove(Categoria categoria) {
         try {
             categoria = findById(categoria.getId()); //Busca categoria
@@ -38,6 +40,7 @@ public class CategoriaDAO implements Serializable {
 
     }
     
+    @Transactional
     public Categoria salvar(Categoria categoria) {
         return entityManager.merge(categoria);
     }
